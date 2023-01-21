@@ -11,7 +11,7 @@ const course = require('./routes/course')
 const enrollment = require('./routes/enrollment')
 const users = require('./routes/users')
 const auth = require('./routes/auth')
-const config=require('config')
+const config = require('config')
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
@@ -33,7 +33,7 @@ app.use('/auth', auth)
 
 // mongoose.set('strictQuery', false);
 // mongoose.set('useFindAndModify', false)
-
+mongoose.set('strictQuery', false);
 
 
 
@@ -56,14 +56,13 @@ app.listen(port, () => {
 
 ///////////////////////////
 
-mongoose.connect('mongodb://127.0.0.1:27017/categories', { useNewUrlParser: true })
+mongoose.connect('mongodb://127.0.0.1:27017/categories', { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {
     console.log("Muvafaqqiyatli ulandi");
   })
   .catch((err) => {
     console.log("Xatolik mavjud=====>>", err);
   })
-
 const bookSchema = new mongoose.Schema({
   name: String,
   author: String,
